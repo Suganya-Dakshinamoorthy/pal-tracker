@@ -29,7 +29,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        TimeEntry expected = new TimeEntry(1L, 123, 456, LocalDate.parse("2017-01-08"), 8);
+        TimeEntry expected = new TimeEntry(1L, 123, LocalDate.parse("2017-01-08"), 8);
         doReturn(expected)
                 .when(timeEntryRepository)
                 .create(any(TimeEntry.class));
@@ -42,7 +42,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testRead() throws Exception {
-        TimeEntry expected = new TimeEntry(1L, 123, 456, LocalDate.parse("2017-01-08"), 8);
+        TimeEntry expected = new TimeEntry(1L, 123, LocalDate.parse("2017-01-08"), 8);
         doReturn(expected)
                 .when(timeEntryRepository)
                 .find(1L);
@@ -65,8 +65,8 @@ public class TimeEntryControllerTest {
     @Test
     public void testList() throws Exception {
         List<TimeEntry> expected = asList(
-                new TimeEntry(1, 123, 456, LocalDate.parse("2017-01-08"), 8),
-                new TimeEntry(2, 789, 321, LocalDate.parse("2017-01-07"), 4)
+                new TimeEntry(1, 123,  LocalDate.parse("2017-01-08"), 8),
+                new TimeEntry(2, 789,  LocalDate.parse("2017-01-07"), 4)
         );
         doReturn(expected).when(timeEntryRepository).list();
 
@@ -77,7 +77,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        TimeEntry expected = new TimeEntry(1, 987, 654, LocalDate.parse("2017-01-07"), 4);
+        TimeEntry expected = new TimeEntry(1, 987,  LocalDate.parse("2017-01-07"), 4);
         doReturn(expected)
                 .when(timeEntryRepository)
                 .update(eq(1L), any(TimeEntry.class));
@@ -93,7 +93,7 @@ public class TimeEntryControllerTest {
                 .when(timeEntryRepository)
                 .update(eq(1L), any(TimeEntry.class));
 
-        ResponseEntity response = controller.update(1L, new TimeEntry());
+        ResponseEntity response = controller.update(1L, new TimeEntry(1,  654, LocalDate.parse("2017-01-07"), 4));
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
