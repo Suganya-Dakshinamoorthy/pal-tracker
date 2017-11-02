@@ -1,4 +1,3 @@
----
 resources:
 - name: pal-tracker
   type: git
