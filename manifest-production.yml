@@ -1,5 +1,6 @@
----
 applications:
 - name: pal-tracker
   path: build/libs/pal-tracker.jar
-  host: pal-tracker-suganya
+  host: ps-pal-tracker-production
+  services:
+  - tracker-database
